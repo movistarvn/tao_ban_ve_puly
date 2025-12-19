@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <title>Công cụ tạo bản vẽ Puly</title>
+  <style>
+    body { font-family: Arial; padding: 20px; }
+    label { display:block; margin-top:10px; }
+    input, select { width: 160px; }
+    svg { border:1px solid #999; margin-top:20px; }
+  </style>
+</head>
+<body>
+
+<h2>Công cụ tạo bản vẽ Puly rãnh A / B / C</h2>
+
+<label>Loại puly:
+  <select id="type">
+    <option value="A">Puly A</option>
+    <option value="B">Puly B</option>
+    <option value="C">Puly C</option>
+  </select>
+</label>
+
+<label>Đường kính ngoài D (mm):
+  <input id="D" type="number" value="200">
+</label>
+
+<label>Đường kính trục d (mm):
+  <input id="d" type="number" value="40">
+</label>
+
+<label>Bề rộng B (mm):
+  <input id="B" type="number" value="60">
+</label>
+
+<label>Số rãnh:
+  <input id="r" type="number" value="2">
+</label>
+
+<button onclick="draw()">Tạo bản vẽ</button>
+
+<svg id="svg" width="600" height="350"></svg>
+
+<script>
+function draw(){
+  const D = +document.getElementById("D").value;
+  const d = +document.getElementById("d").value;
+  const B = +document.getElementById("B").value;
+
+  const scale = 1.5;
+  const svg = document.getElementById("svg");
+  svg.innerHTML = "";
+
+  const cx = 300;
+  const cy = 180;
+
+  svg.innerHTML += `
+    <circle cx="${cx}" cy="${cy}" r="${D/2*scale}" fill="none" stroke="black"/>
+    <circle cx="${cx}" cy="${cy}" r="${d/2*scale}" fill="none" stroke="black"/>
+
+    <text x="10" y="20">D = ${D} mm</text>
+    <text x="10" y="40">d = ${d} mm</text>
+    <text x="10" y="60">B = ${B} mm</text>
+  `;
+}
+</script>
+
+</body>
+</html>
